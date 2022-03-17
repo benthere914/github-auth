@@ -1,3 +1,40 @@
 h1 {
     text-align: center;
 }
+
+.homePage{
+    display: flex;
+    width:  100vw;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.mainDisplay{
+    display: flex;
+    width:  50vw;
+    height: 50vh;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    position: fixed;
+    top: 20vh;
+    left: 20vw;
+}
+
+.mainDisplay div{
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    justify-content: space-between;
+}
+
+.mainDisplay div > input {
+    height: 40px;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 25px;
+    outline: none;
+    border: solid gray 1px;
+}
