@@ -2,22 +2,16 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import '../../firebase/firebase.js'
 import { Alert, Button } from 'react-bootstrap'
-import { useEffect, useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import { useState } from 'react'
 import {signInWithPopup, getAuth, GithubAuthProvider} from 'firebase/auth';
 import axios from 'axios';
 const auth = getAuth();
 
 const Home = () => {
-    const history = useHistory();
     const [message, setMessage] = useState('');
     const [repoName, setRepoName] = useState('');
     const [token, setToken] = useState('');
     const [created, setCreated] = useState(false)
-
-    useEffect(() => {
-        setRepoName(history.location.pathname.slice(1))
-    }, [])
 
     const gitHubLogin = async () => {
         const provider = new GithubAuthProvider();
@@ -74,23 +68,6 @@ const Home = () => {
             </Alert>
         </>
     )
-
-    if (!token) {
-        return (<Button variant='primary' size='lg' style={{width: 450}} onClick={() => {handlerGitHubLogin()}}>Login With GitHub</Button>)
-    } else if (token && !created){
-        return (
-            <>
-                <input value={repoName} onChange={(e) => {setRepoName(e.target.value)}}></input>
-                <Button variant='primary' size='lg' style={{width: 450}} onClick={() => {createRepo()}}>Create Repo</Button>
-            </>
-        )
-    } else {
-        return (
-        <>
-            <h1>{repoName} was created successfully. You can close this window and resume the CLI.</h1>
-        </>
-        )
-    }
 }
 
 export default Home
